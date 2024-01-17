@@ -94,11 +94,6 @@ def get_resource_config_history(config_client, invoking_event):
     )
 
 def convert_into_notification_config_item(grh_config_item):
-    # Resource Name is not guaranteed to be populated, fall back to resourceId if not present
-    if 'resourceName' in grh_config_item:
-        resourceName = grh_config_item['resourceName']
-    else:
-        resourceName = grh_config_item['resourceId']
     return {
         'configurationItemCaptureTime': grh_config_item['configurationItemCaptureTime'],
         'configurationStateId': grh_config_item['configurationStateId'],
@@ -106,10 +101,10 @@ def convert_into_notification_config_item(grh_config_item):
         'configurationItemStatus': grh_config_item['configurationItemStatus'],
         'resourceType': grh_config_item['resourceType'],
         'resourceId': grh_config_item['resourceId'],
-        'resourceName': resourceName,
+        'resourceName': grh_config_item.get("resourceName", grh_config_item['resourceId']),
         'ARN': grh_config_item['arn'],
         'awsRegion': grh_config_item['awsRegion'],
-        'availabilityZone': grh_config_item['availabilityZone'],
+        'availabilityZone': grh_config_item.get('availabilityZone'),
         'configurationStateMd5Hash': grh_config_item['configurationItemMD5Hash'],
         'resourceCreationTime': grh_config_item['resourceCreationTime'],
         'relatedEvents': grh_config_item['relatedEvents'],
