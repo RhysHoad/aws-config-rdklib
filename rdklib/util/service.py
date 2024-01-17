@@ -106,7 +106,7 @@ def convert_into_notification_config_item(grh_config_item):
         'awsRegion': grh_config_item['awsRegion'],
         'availabilityZone': grh_config_item.get('availabilityZone'),
         'configurationStateMd5Hash': grh_config_item['configurationItemMD5Hash'],
-        'resourceCreationTime': grh_config_item['resourceCreationTime'],
+        'resourceCreationTime': grh_config_item.get('resourceCreationTime'),
         'relatedEvents': grh_config_item['relatedEvents'],
         'tags': grh_config_item['tags'],
         'relationships': extract_relationships(grh_config_item['relationships']),
