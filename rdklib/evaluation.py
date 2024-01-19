@@ -86,7 +86,7 @@ class Evaluation:
             "ComplianceResourceId": self.complianceResourceId,
             "ComplianceResourceType": self.complianceResourceType,
             "ComplianceType": self.complianceType,
-            "OrderingTimestamp": self.orderingTimestamp
+            "OrderingTimestamp": self.orderingTimestamp if isinstance(self.orderingTimestamp, str) else self.orderingTimestamp.isoformat()
         }
 
         if self.annotation:
